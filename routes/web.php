@@ -16,6 +16,9 @@ Route::get('/', function () {
 });
 
 
+Route::get('students/search' , 'StudentController@search')->name('student.search');
+
+
 Route::resource('students' , 'StudentController');
 
 Auth::routes();

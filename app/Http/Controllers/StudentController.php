@@ -21,7 +21,7 @@ class StudentController extends Controller
 
     public function index()
     {
-        $students = Student::paginate(5);
+        $students = Student::paginate(10);
         return view('students.index')->with('students' , $students);
     }
 
@@ -33,6 +33,15 @@ class StudentController extends Controller
     public function create()
     {
         return view('students.create');
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->get('query');
+
+        $students = Student::where('firstname' , 'like' , "%{$search}%")->paginate(10);
+
+        return view('students.index')->with('students' , $students);
     }
 
     /**
@@ -156,6 +165,11 @@ class StudentController extends Controller
     public function destroy($id)
     {
         $student = Student::find($id);
+
+/*        if($student->avatar)
+        {
+            unlink($student->avatar);
+        }*/
         $student->delete();
 
         return redirect('students/')->with('success' , 'Data has been deleted');

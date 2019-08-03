@@ -11,7 +11,9 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
+      
+
 </head>
 <body>
     <div id="app">
@@ -76,5 +78,23 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+    <script>
+	
+		$(document).ready(function(){
+			
+			$("#del_data").click(function(){
+				
+				if(confirm("Do you want to delete this data?"))
+					{
+						return true;
+					}
+				else{
+					return false;
+				}
+				
+			})
+		})
+	</script>
 </body>
 </html>
